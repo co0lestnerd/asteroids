@@ -42,10 +42,15 @@ def main():
         updatable.update(dt)
 
         # Turn on collision detection
-        for objects in asteroids:
-            if objects.checkCollision(player) == True:
+        for asteroid in asteroids:
+            if asteroid.checkCollision(player) == True:
                 print ("Game over!")
                 sys.exit()
+            
+            for shot in shots:
+                if asteroid.checkCollision(shot) == True:
+                    shot.kill()
+                    asteroid.kill()
 
         
         # Fill screen with black
